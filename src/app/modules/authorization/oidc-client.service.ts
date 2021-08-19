@@ -15,10 +15,10 @@ export class OidcClientService {
     expired: false,
     token_type: 'Bearer',
     access_token: 'token',
-    profile: { sub: '38368134-ed58-4073-8eae-5619e5e136c7' }
+    profile: { sub: 'bddc0f0c-c665-4d3d-88bb-0cbc36f4ff2d' }
   }
   // private user = this.FAKE_USER
-  private user = null;
+  private user = this.FAKE_USER;
 
   redirectUrl: string;
 
@@ -51,8 +51,8 @@ export class OidcClientService {
         // console.log(this.manager.getUser());
 
         // FAKE_USER
-        this.user = user;
-        // this.user = this.FAKE_USER;
+        // this.user = user;
+        this.user = this.FAKE_USER;
       })
       .catch(rej => console.log(rej));
   }

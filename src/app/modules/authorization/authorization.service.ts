@@ -30,7 +30,7 @@ export class AuthorizationService {
     private oidcClientService: OidcClientService,
   ) {
     // FAKE_USER
-    // this.setCurrentUser()
+    this.setCurrentUser()
   }
 
   setCurrentUser(): void {
