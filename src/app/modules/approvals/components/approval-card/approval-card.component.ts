@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DataEntry, State, Template } from '@models/*';
-import { Store } from '@ngrx/store';
-import { isSmallScreen } from 'src/app/app-store';
+import { DataEntry, State } from '@models/*';
+import {  Store } from '@ngrx/store';
+import { isSmallScreen, userDepartments } from 'src/app/app-store';
 import { MessageService } from 'src/app/modules/message/sevices/message.service';
 
 @Component({
@@ -20,12 +20,19 @@ export class ApprovalCardComponent implements OnInit {
     private messageService: MessageService,
   ) { }
 
+  
   ngOnInit(): void {
     this.store.select(isSmallScreen)
       .subscribe(small => this.isSmallScreen = small);
+    
   }
   get SubmitDate(){
     return new Date(this.dataEntry.submitDate).toLocaleString()
+  }
+  get Department(){
+    return 'hehe'
+    //this.store.select(userDepartments).subscribe(deps => deps.filter(dep=>dep.departmentId == this.dataEntry.template._departmentId)[0].name);
+    
   }
   check() {
     this.clickCheck.emit(this.dataEntry.dataEntryId);

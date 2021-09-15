@@ -76,8 +76,8 @@ export class TemplateComponent implements OnInit {
     })
 
     this.editingTemplate$ = this.store.pipe(
-      select(editingTemplate),
-      tap(template => {
+      select(editingTemplate)).subscribe(
+      template => {
         if (!template) {
           this.router.navigate(['configuration/templates']);
           return;
@@ -105,13 +105,13 @@ export class TemplateComponent implements OnInit {
 
         // auro select first ttemplate
         // this.dashboard.length && this.clickItem(this.dashboard[0].controlId)
-      }),
-      mergeMap(_ => this.store.select(currentDepartment)),
-      mergeMap(department => this.store.select(allUsers).pipe(
-        tap(users => {
+      });
+      this.store.select(currentDepartment).subscribe(
+      (department => this.store.select(allUsers).
+        subscribe(users => {
           this.departmentUsers = users.filter(user => user.departments.find(dep => dep.departmentId == department.departmentId));
         })
-      ))).subscribe()
+      ))
   }
 
   ngOnDestroy(): void {

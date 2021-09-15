@@ -12,10 +12,11 @@ import { dynComponents } from './components/dyn-components';
   styleUrls: ['./dynamic-controls.component.scss'],
   providers: [ControlsLocalService]
 })
-export class DynamicControlsComponent implements OnChanges {
+export class DynamicControlsComponent implements OnChanges, OnInit {
   @Input() control: DynControl;
   @Input() form: FormGroup;
   @Input() appearance: string;
+  @Input() readOnly:boolean;
 
   component;
   private dataSourse = new BehaviorSubject<any>(null);
@@ -23,13 +24,19 @@ export class DynamicControlsComponent implements OnChanges {
   constructor(
     private clService: ControlsLocalService,
   ) { }
+
+  ngOnInit(){
+    if(this.readOnly){this.form.disable();}
+  }
   ngOnChanges() {
+    
     this.clService.setData({
       control: this.control,
       form: this.form,
       appearance: this.appearance || 'outline'
     });
     this.component = dynComponents.get(this.control.type);
+    
   }
 
   get isInvalid() {

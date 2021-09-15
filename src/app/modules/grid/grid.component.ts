@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, HostListener, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, HostListener, ViewChild,  } from '@angular/core';
 import { GridsterItem, GridsterConfig, GridsterItemComponentInterface } from 'angular-gridster2';
 import { DynControl } from '../dynamic-controls/models';
 import { FormGroup } from '@angular/forms';
@@ -60,6 +60,7 @@ export class GridComponent implements OnChanges {
   @Input() controlsErrors //: TemplateDataItem[];
   @Input() blind: boolean;
   @Input() rclickEnabled: boolean;
+  @Input() readOnly: boolean;
 
   @Output() clickItem: EventEmitter<string> = new EventEmitter<string>();
   @Output() dropNewItem: EventEmitter<GridsterItem> = new EventEmitter<GridsterItem>();
@@ -67,7 +68,11 @@ export class GridComponent implements OnChanges {
   @Output() dashboardChange: EventEmitter<DynControl[]> = new EventEmitter<DynControl[]>();
   // @Output() optionsChange: EventEmitter<GridsterOptions> = new EventEmitter<GridsterOptions>()
 
-  constructor(){}
+  constructor(){
+    
+  }
+
+
 
   private _optionsBuild: GridsterConfig = {
     itemChangeCallback: (e, i) => this.gridsterItemChange(e, i),
@@ -164,13 +169,14 @@ export class GridComponent implements OnChanges {
   }
 
   itemRightClick(event, id): void {
-    event.preventDefault();
+    if(this.rclickEnabled){event.preventDefault();
     
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menuData = { 'itemId': id };
     this.contextMenu.menu.focusFirstItem('mouse');
     this.contextMenu.openMenu();
+    }
   
   }
   
@@ -181,7 +187,7 @@ export class GridComponent implements OnChanges {
   }
 
   emptyCellDrop(event: MouseEvent, item: GridsterItem) {
-    console.log(item);
+    //console.log(item);
     this.dropNewItem.emit(item);
   }
 

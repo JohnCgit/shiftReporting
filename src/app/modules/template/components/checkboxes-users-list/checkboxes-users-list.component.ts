@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '@models/*';
 import { FormControl } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-checkboxes-users-list',
@@ -8,7 +9,14 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./checkboxes-users-list.component.scss']
 })
 export class CheckboxesUsersListComponent implements OnInit {
-  @Input() users?: User[];
+  private _users = new BehaviorSubject<User[]>([]);
+  @Input() 
+  set users(value){
+    this._users.next(value);
+  }
+  get users(){
+    return this._users.getValue();
+  }
   @Input() checkedUsers?: string[];
   filteredUsers: User[] = [];
   search = new FormControl('');
@@ -20,8 +28,11 @@ export class CheckboxesUsersListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.filteredUsers = this.users ? this.users : [];
-
+    this._users.subscribe(
+      _ => {
+        this.filteredUsers = this.users ? this.users : [];
+      }
+    )
     this.search.valueChanges.subscribe(query => {
       this.filteredUsers = this.users;
       if (!query) return;

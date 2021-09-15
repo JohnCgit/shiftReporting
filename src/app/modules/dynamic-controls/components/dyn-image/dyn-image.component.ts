@@ -22,7 +22,7 @@ export class DynImageComponent implements OnInit {
     this.clService.getData().subscribe(options => {      
       this.options = options
     })
-    console.log(this.options);
+    //console.log(this.options);
   }
 
 }

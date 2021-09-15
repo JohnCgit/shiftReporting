@@ -36,7 +36,7 @@
           <button (click)="goBack()" mat-stroked-button color="primary">CANCEL</button>
         </div>
         <div class="m-2">
-          <button mat-flat-button color="primary" (click)="reject()">REJECT</button>
+          <button mat-flat-button color="warn" (click)="reject()">REJECT</button>
         </div>
         <div  class="m-2">
           <button  mat-flat-button color="primary" (click)="approve()" >APPROVE</button>
@@ -44,7 +44,7 @@
       </div>
       <div class="p-2 overflow-auto">
         <div>
-          <app-grid [options]="options" [dashboard]="dashboard" [form]="form"></app-grid>
+          <app-grid [options]="options" [form]="form" [dashboard]="dashboard" [readOnly]="true" [rclickEnabled]="false"></app-grid>
         </div>
       </div>
     </section>
