@@ -1,0 +1,11 @@
+
+<div class="w-full h-full flex items-center">
+    
+      <div [ngClass]="{'px-2 pt-3': options.appearance === 'standard1'}">
+        <a [href]="options.control.url" target="_blank" class="flex items-center">
+            <span class="text-blue-500	underline">{{options.control.label}}</span>
+            <mat-icon [ngStyle]="{'color': 'rgb(59, 130, 246)'}">open_in_new</mat-icon>
+        </a>
+      </div>
+    
+</div>
