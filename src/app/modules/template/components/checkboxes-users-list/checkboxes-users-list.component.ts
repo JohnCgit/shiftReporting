@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { User } from '@models/*';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
@@ -27,25 +27,28 @@ export class CheckboxesUsersListComponent implements OnInit {
   constructor(
   ) { }
 
-  ngOnInit(): void {
-    this._users.subscribe(
-      _ => {
-        this.filteredUsers = this.users ? this.users : [];
-      }
-    )
-    this.search.valueChanges.subscribe(query => {
-      this.filteredUsers = this.users;
-      if (!query) return;
-      const words = String(query).split(' ');
-      words.map(word => {
-        const str = word.toLowerCase()
-        this.filteredUsers = this.filteredUsers.filter(user => (
-          user.firstName?.toLowerCase().includes(str)
-          || user.secondName?.toLowerCase().includes(str)
-          || user.email?.toLowerCase().includes(str)
-        ))
-      })
+  ngOnChanges() {
+    this.filter(this.search.value);
+  }
+
+  filter(query: string) {
+    this.filteredUsers = this.users;
+    if (!query) return;
+    const words = String(query).split(' ');
+    words.map(word => {
+      const str = word.toLowerCase()
+      this.filteredUsers = this.filteredUsers.filter(user => (
+        user.firstName?.toLowerCase().includes(str)
+        || user.secondName?.toLowerCase().includes(str)
+        || user.email?.toLowerCase().includes(str)
+      ))
     })
+  }
+
+  ngOnInit(): void {
+    this.filteredUsers = this.users ? this.users : [];
+
+    this.search.valueChanges.subscribe(query => this.filter(query))
   }
 
   onChange(event, user) {
