@@ -53,7 +53,8 @@ export class DynLabelComponent implements OnInit {
   ngOnInit() {
     this.clService.getData().subscribe(options => {      
       this.options = options;
-      this.options.control.settings = this.options.control.settings.concat(this.initFont());
+      if(this.options.control.hasOwnProperty('settings'))
+      this.options.control.settings = this.options.control.settings?this.options.control.settings.concat(this.initFont()):null;
     });
    
     
