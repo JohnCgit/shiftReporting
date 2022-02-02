@@ -40,6 +40,17 @@ export class DataEntryHttpService {
     return this.httpService.post<AppHttpResponse>(options);
   }
 
+  getDataEntries(departmentId: number, fromDate: string, toDate: string, templateName: string, showAll: boolean): Observable<AppHttpResponse> {
+    const options: AppHttpRequest = {
+      url: this.baseUrl + 'getDataEntries',
+      payload: { departmentId, fromDate, toDate, templateName, showAll },
+      loadingMsg: 'Loading data entries...',
+      errorMsg: 'Failed to load data entries',
+      successMsg: 'Loaded data entries',
+    }
+    return this.httpService.post<AppHttpResponse>(options);
+  }
+
   GetPendingDataEntries(userId:string, inBackground?: boolean){
     const options: AppHttpRequest = {
       url: this.baseUrl + 'getPendingDataEntries',

@@ -1,0 +1,20 @@
+<mat-card *ngIf="dataEntry" class="card">
+    <div class="flex flex-col h-full">
+      <div class="flex mb-1">
+        <mat-icon style="min-width: 24px;" class="mr-2" svgIcon="file-table-box" color="primary"></mat-icon>
+        <p class="font-bold text-xl">{{dataEntry.template['name']}}</p>
+      </div>
+      <div class="flex text-gray-600 mb-1">
+        <div class="mr-2 w-6"></div>
+        <!-- <p class="text-sm">{{dataEntry.submitDate | date: 'MM/dd/yyyy'}}</p> -->
+        <p class="text-sm">{{dataEntry.submitDate | date:'medium'}}</p>
+      </div>
+      <div align="end" class="-mb-2 -mx-2 text-gray-600">
+        <button mat-icon-button (click)="open()">
+          <mat-icon matSuffix svgIcon="eye-outline"></mat-icon>
+          <!-- <mat-icon svgIcon="arrow-right-box"></mat-icon> -->
+        </button>
+      </div>
+    </div>
+  </mat-card>
+  

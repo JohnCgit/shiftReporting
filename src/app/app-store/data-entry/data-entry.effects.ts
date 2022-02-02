@@ -46,6 +46,15 @@ export class DataEntryEffects {
     )),
   ));
 
+  getDataEntries$ = createEffect(() => this.actions$.pipe(
+    ofType(DataEntryActions.getDataEntries),
+    mergeMap(({ departmentId, fromDate, toDate, templateName, showAll }) => this.dataEntryHttpService.getDataEntries(departmentId, fromDate, toDate, templateName, showAll).pipe(
+      filter(resp => resp && resp.status === 200),
+      map(resp => DataEntryActions.setDataEntries({ dataEntries: resp.body }))
+    )),
+  ));
+
+
   updateDataEntry$ = createEffect(() => this.actions$.pipe(
     ofType(DataEntryActions.updateDataEntry),
     mergeMap(({ dataEntry }) => this.dataEntryHttpService.updateDataEntry(dataEntry).pipe(

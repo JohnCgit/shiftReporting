@@ -91,11 +91,15 @@ export class DataEntryComponent implements OnInit {
         return opt;
       }),
       tap(opt => {
+        // console.log(opt);
         this.dataEntry = new DataEntry(opt);
+        // console.log(this.dataEntry);
         this.dataEntry.dataEntryId ?? delete this.dataEntry.dataEntryId;
         this.dataEntry.dataEntryId && this.store.dispatch(DataEntryActions.getDataEntryLogs({ dataEntryId: this.dataEntry.dataEntryId }));
-        this.dashboard = <DynControl[]>this.dataEntry.template.body?.dashboard || [];
+        this.dashboard = JSON.parse(JSON.stringify(<DynControl[]>this.dataEntry.template.body?.dashboard)) || [];
+        if (!this.dataEntry.template.body.isEditable) this.dashboard.forEach(control => control.readonly = true);
         this.options = this.dataEntry.template.body?.gridsterOptions || {};
+        // console.log(this.dataEntry);
         this.getSavePermission()
       }),
       switchMap(opt => {
@@ -202,6 +206,22 @@ export class DataEntryComponent implements OnInit {
     this.dataEntry.submitDate = this.dateService.getLocalDate();
     this.dataEntry.submitUserId = this.user.userId;
     this.store.dispatch(DataEntryActions.submitDataEntry({ dataEntry: this.dataEntry }));
+  }
+
+  parse(value: any): Date | null {
+    if ((typeof value === 'string') && (value.includes('/'))) {
+      const str = value.split('/');
+
+      const year = Number(str[2]);
+      const month = Number(str[0]) - 1;
+      const date = Number(str[1]);
+      
+      return new Date(year, month, date);
+    } else if((typeof value === 'string') && value === '') {
+      return new Date();
+    }
+    const timestamp = typeof value === 'number' ? value : Date.parse(value);
+    return isNaN(timestamp) ? null : new Date(timestamp);
   }
 }
 

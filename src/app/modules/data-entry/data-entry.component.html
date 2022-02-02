@@ -25,10 +25,11 @@
           </div>
           <div *ngIf="isSaveEnabled" class="mx-4 my-2">
             <button class="w-full" (click)="save()" mat-flat-button color="primary"
-              [disabled]="!form?.valid">SAVE</button>
+              [disabled]="!form?.valid" *ngIf="dataEntry.template.body['isEditable']">SAVE</button>
           </div>
           <div *ngIf="isSaveEnabled" class="mx-4 my-2">
-            <button class="w-full" (click)="submitDataEntry()" mat-flat-button color="primary">SUBMIT</button>
+            <button class="w-full" (click)="submitDataEntry()" 
+            mat-flat-button color="primary" *ngIf="dataEntry.template.body['isEditable']" [disabled]="!form?.valid" >SUBMIT</button>
           </div>
         </div>
 
@@ -44,10 +45,11 @@
           <button (click)="drawer.toggle()" mat-stroked-button color="primary">SHOW LOGS</button>
         </div>
         <div *ngIf="isSaveEnabled" class="m-2">
-          <button (click)="save()" mat-flat-button color="primary" [disabled]="!form?.valid">SAVE</button>
+          <button (click)="save()" mat-flat-button color="primary" [disabled]="!form?.valid" *ngIf="dataEntry.template.body['isEditable']">SAVE</button>
         </div>
         <div *ngIf="isSaveEnabled" class="m-2">
-          <button (click)="submitDataEntry()" mat-flat-button color="primary" [disabled]="!form?.valid">SUBMIT</button>
+          <button (click)="submitDataEntry()" mat-flat-button color="primary"
+           [disabled]="!form?.valid" *ngIf="dataEntry.template.body['isEditable']">SUBMIT</button>
         </div>
       </div>
       <div class="p-2 overflow-auto">

@@ -4,7 +4,7 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   prefix: '',
   purge: {
-    enabled: process.env.NODE_ENV === 'prod',
+    enabled: true,
     content: [
       './src/**/*.{html,ts}',
     ]

@@ -24,6 +24,22 @@ export const getDataEntriesOnDate = createAction(
   '[DataEntry] Get DataEntries OnDate',
   props<{ departmentId: number, fromDate: string, toDate: string }>()
 );
+
+export const getDataEntries = createAction(
+  '[DataEntry] Get DataEntries',
+  props<{ departmentId: number, fromDate: string, toDate: string, templateName: string, showAll: boolean }>()
+);
+
+export const setDataEntries = createAction(
+  '[DataEntry] Set DataEntries',
+  props<{ dataEntries: DataEntry[] }>()
+);
+
+export const setDate = createAction(
+  '[DataEntry] Set Date',
+  props<{ startDate: string,endDate:string }>()
+);
+
 export const setDataEntriesOnDate = createAction(
   '[DataEntry] Set DataEntries OnDate',
   props<{ dataEntries: DataEntry[] }>()

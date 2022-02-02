@@ -13,8 +13,10 @@ export interface State {
   pendingDataEntry: DataEntry,
   latestDataEntry: DataEntry,
   dataEntriesOnDate: DataEntry[],
+  dataEntries: DataEntry[],
   dataEntryLogs: DataEntryLog[],
   dataEntriesWaitingForApproval: DataEntry[],
+  date:{startDate:string,endDate:string}
 }
 
 export const initialState: State = {
@@ -25,12 +27,20 @@ export const initialState: State = {
   pendingDataEntry:null,
   latestDataEntry: null,
   dataEntriesOnDate: [],
+  dataEntries: [],
   dataEntryLogs: [],
-  dataEntriesWaitingForApproval:[]
+  dataEntriesWaitingForApproval:[],
+  date:{startDate:'',endDate:''}
 };
 
 const dataEntryReducer = createReducer(
   initialState,
+
+  on(DataEntryActions.setDataEntries,
+    (state, { dataEntries }) => ({ ...state, dataEntries: dataEntries })),
+
+  on(DataEntryActions.setDate,
+    (state, { startDate,endDate }) => ({ ...state, date:{startDate: startDate,endDate: endDate}})),
 
   on(DataEntryActions.getLatestDataEntrySuccess,
     (state, { dataEntry }) => ({ ...state, latestDataEntry: dataEntry })),

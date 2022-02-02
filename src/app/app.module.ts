@@ -22,13 +22,16 @@ import { UsersModule } from './modules/users/users.module';
 import { DepartmentsModule } from './modules/departments/departments.module';
 import { UsedMaterialModule } from './modules/used-material/used-material.module';
 import { TemplatesModule } from './modules/templates/templates.module';
-import { PiafModule } from './modules/piaf/piaf.module';
+
 import { ShiftsModule } from './modules/shifts/shifts.module';
 import { SchedulesModule } from './modules/schedules/schedules.module';
 import { MenuButtonComponent } from './components/menu-button/menu-button.component';
+
+import { ChecklistModule } from './modules/checklist/checklist.module';
+import { ReportsModule } from './modules/reports/reports.module';
+import { PiafModule } from './modules/piaf/piaf.module';
 import { ConfigModule } from './modules/config/config.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
-import { ChecklistModule } from './modules/checklist/checklist.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { ChecklistModule } from './modules/checklist/checklist.module';
     GridModule,
     TemplateModule,
     ScheduleModule,
+    
     DataEntryModule,
     DialogModule,
     AuthorizationModule,
@@ -63,6 +67,10 @@ import { ChecklistModule } from './modules/checklist/checklist.module';
     SchedulesModule,
     ConfigModule,
     ChecklistModule,
+    ReportsModule,
+    PiafModule,
+    
+    ConfigModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

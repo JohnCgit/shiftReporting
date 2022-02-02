@@ -106,6 +106,9 @@ export const currentDataEntry = createSelector(dataEntryState, (state) => state.
 export const dataEntryLogs = createSelector(dataEntryState, (state) => state.dataEntryLogs);
 export const dataEntriesWaitingForApproval = createSelector(dataEntryState, (state) => state.dataEntriesWaitingForApproval);
 export const pendingDataEntry = createSelector(dataEntryState, (state) => state.pendingDataEntry);
+export const dataEntries = createSelector(dataEntryState, (state) => state.dataEntries);
+export const date = createSelector(dataEntryState,(state) => state.date);
+
 
 // interfaces
 export const interfaceState = createFeatureSelector<fromInterface.State>('interface');

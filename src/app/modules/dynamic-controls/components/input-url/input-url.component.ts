@@ -17,6 +17,7 @@ export class InputUrlComponent implements OnInit {
   ngOnInit() {
     this.clService.getData().subscribe(options => {
       this.options = options;
+      console.log(this.options);
     }
     )
   }

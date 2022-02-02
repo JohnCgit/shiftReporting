@@ -8,6 +8,7 @@ import { DepartmentsModule } from '../departments/departments.module';
 import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TemplateCopyComponent } from './components/template-copy/template-copy.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -19,6 +20,8 @@ import { TemplateCopyComponent } from './components/template-copy/template-copy.
     DepartmentsModule,
     ReactiveFormsModule,
     FormsModule,
-  ]
+    MatIconModule
+  ],
+  exports: [TemplateCardComponent, SearchPipePipe]
 })
 export class TemplatesModule { }

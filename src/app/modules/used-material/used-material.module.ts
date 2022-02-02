@@ -27,6 +27,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 
@@ -58,6 +60,8 @@ const modules = [
   MatProgressBarModule,
   MatChipsModule,
   DragDropModule,
+  MatDatepickerModule,
+  MatSlideToggleModule
 ]
 
 

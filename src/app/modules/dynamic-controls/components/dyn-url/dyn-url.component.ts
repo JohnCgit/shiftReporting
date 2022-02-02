@@ -16,6 +16,8 @@ export class DynUrlComponent implements OnInit {
   ngOnInit(): void {
     this.clService.getData().subscribe(options => {
       this.options = options;
+      console.log("dyn-url");
+      console.log(this.options);
     })
   }
 

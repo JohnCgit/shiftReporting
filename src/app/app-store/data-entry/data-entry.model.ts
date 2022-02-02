@@ -6,6 +6,10 @@ export class DataEntry {
   templateId: number = null;
   createDate: string = null;
   submitDate: string = null;
+  // scheduleId: number = null;
+  // templateId: number = null;
+  // createDate: Date;
+  // submitDate: string;
   template: Template = null;
   submitUserId: string = null;
   modifiedUserId: string = null;

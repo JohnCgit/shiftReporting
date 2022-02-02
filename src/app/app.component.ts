@@ -55,6 +55,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.config.push({key:'', title:'Log Out', icon:'logout', allowedRoles:[1,2,3]})
     this.store.select(isSmallScreen).subscribe(small => {
       this.smallScreen = small;
       this.isSnavOpen = !small;

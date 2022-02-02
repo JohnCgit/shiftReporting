@@ -9,6 +9,7 @@ import { PlantEffects } from './plant/plant.effects';
 import { DepartmentEffects } from './department/department.effects';
 import { ShiftEffects } from './shift/shift.effects';
 import { ScheduleEffects } from './schedule/schedule.effects';
+
 import { TemplateEffects } from './template/template.effects';
 import { InterfaceEffects } from './interface/interface.effects';
 import { DataEntryEffects } from './data-entry/data-entry.effects';
@@ -39,6 +40,7 @@ import { ChecklistEffects } from './checklist/checklist.effects';
       DepartmentEffects,
       ShiftEffects,
       ScheduleEffects,
+
       TemplateEffects,
       InterfaceEffects,
       DataEntryEffects,

@@ -11,6 +11,7 @@ export const routerLinks = [
   { key: 'configuration/departments', title: 'Departments', icon: 'graph-outline', allowedRoles: [1, 2] },
   { key: 'configuration/shifts', title: 'Shifts', icon: 'calendar', allowedRoles: [1] },
   { key: 'configuration/schedules', title: 'Schedules', icon: 'calendar-clock', allowedRoles: [1, 2, 3] },
+  { key: 'configuration/reports', title: 'Reports Overview', icon: 'file-document-edit', allowedRoles: [1, 2, 3] },
   { key: 'configuration/templates', title: 'Templates', icon: 'file-table-box', allowedRoles: [1, 2, 3] },
   { key: 'configuration/users', title: 'Users', icon: 'account-group', allowedRoles: [1, 2, 3] },
   { key: 'configuration/config', title: 'Settings', icon: 'cog-outline', allowedRoles: [1] },

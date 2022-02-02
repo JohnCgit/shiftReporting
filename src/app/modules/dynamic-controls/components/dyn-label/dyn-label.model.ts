@@ -14,6 +14,7 @@ export class DynLabel extends BaseControl {
     { controlId: 'italic', label: 'Italic', type: 'checkbox' },
     { controlId: 'underline', label: 'Underline', type: 'checkbox' },
     
+    // { controlId: 'max', label: 'Maximum value', type: 'number' },
   ]
 
   constructor(opt: {} = {}) {

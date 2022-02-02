@@ -18,6 +18,7 @@ import { ApprovalsComponent } from './modules/approvals/approvals.component';
 import { ApprovalProcessComponent } from './modules/approvals/components/approval-process/approval-process.component';
 import { ChecklistEditorComponent } from './modules/checklist/components/checklist-editor/checklist-editor.component';
 import { ChecklistDataEntryComponent } from './modules/checklist/components/checklist-data-entry/checklist-data-entry.component';
+import { ReportsComponent } from './modules/reports/reports.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,17 @@ const routes: Routes = [
   { path: 'checklist-data-entry', component: ChecklistDataEntryComponent, canActivate: [AuthGuard] },
   { path: 'callback.html', component: LoginComponent },
   { path: '**', redirectTo: 'calendar', pathMatch: 'full' },
+  { path: 'approvals/dataentry', component: ApprovalProcessComponent, canActivate: [AuthGuard] },
+  { path: 'templates', component: TemplatesComponent, canActivate: [AuthGuard] },
+      
+  //   ]
+  // }
+  
+  // { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
+  // { path: 'dataentry', component: DataEntryComponent, canActivate: [AuthGuard] },
+  // { path: 'callback.html', component: LoginComponent },
+  // { path: '**', redirectTo: 'reports', pathMatch: 'full' },
+  // // { path: '', redirectTo: 'dataentry'},
 ];
 
 @NgModule({
