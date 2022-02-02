@@ -1,0 +1,68 @@
+<mat-sidenav-container class="h-full" autosize>
+
+  <mat-sidenav #snav [fixedInViewport]="smallScreen" [mode]="smallScreen ? 'over' : 'side'" [opened]="isSnavOpen"
+    class="h-full" [ngStyle]="{'width.px': isSmall ? 72 : 256}">
+    <div *ngIf="smallScreen" class="fixed z-10 text-gray-600 mt-4 ml-4">
+      <button mat-mini-fab color="primary">
+        <mat-icon svgIcon="menu" (click)="snav.toggle()"></mat-icon>
+      </button>
+    </div>   
+    <div *ngIf="!isSmall && abbreviation" class="flex flex-col items-center my-4">
+      <div class="bg-blue-400 h-16 w-16 rounded-full flex justify-center items-center mb-2">
+        <div class="text-gray-100 text-3xl">{{abbreviation}}</div>
+      </div>
+      <div class="flex items-center">
+        <div class="mr-4">
+          <p class="text-gray-800 font-bold mb-1">{{userName}}</p>
+          <p class="text-gray-600 text-xs uppercase">{{userRole}}</p>
+        </div>
+        <button mat-icon-button (click)="editUserInfo()" [disabled]="!isConnected">
+          <mat-icon svgIcon="pencil" class="text-gray-600"></mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-nav-list>
+      <div *ngFor="let item of config">
+        <mat-list-item *ngIf="item.isShow" (click)="(smallScreen && snav.toggle()); (isConnected && redirect('./' + item.key))">
+          <ng-container *ngIf="item.title === 'Pending approvals' && PaCount>0; then notif else secondcondition"> </ng-container>
+          <ng-template #notif>
+              <mat-icon [matBadge]="PaCount" class="justify-self-start" matBadgeColor="warn"
+            mat-list-icon [svgIcon]="item.icon" routerLinkActive="mat-primary"></mat-icon>
+            <p class="pl-6" *ngIf="!isSmall" mat-line routerLinkActive="text-primary"> {{item.title}}</p>
+          </ng-template>
+          <ng-template #default>
+            <mat-icon mat-list-icon [svgIcon]="item.icon" class="justify-self-start" routerLinkActive="mat-primary"></mat-icon>
+            <p class="pl-6" *ngIf="!isSmall" mat-line routerLinkActive="text-primary"> {{item.title}}</p>
+          </ng-template>  
+          <ng-template #Logout>
+            <mat-icon mat-list-icon [svgIcon]="item.icon" class="justify-self-start" routerLinkActive="mat-primary" (click)="logout() "></mat-icon>
+            <p class="pl-6" *ngIf="!isSmall" mat-line routerLinkActive="text-primary" (click)="logout() "> {{item.title}}</p>
+          </ng-template>  
+          <ng-template #secondcondition>
+            <ng-container *ngIf="item.title === 'Log Out'; then Logout else default"></ng-container>
+          </ng-template>
+        </mat-list-item>
+      </div>
+      <!-- <div class="flex-1"></div> -->
+      <!-- <mat-list-item *ngIf="currentUser" (click)="smallScreen && snav.toggle(); logout() ">
+        <div class="">
+        <mat-icon mat-list-icon svgIcon="logout"></mat-icon>
+        <p mat-line *ngIf="!isSmall" class="pl-6" routerLinkActive="/">Log out</p>
+      </div>
+      </mat-list-item> -->
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div *ngIf="smallScreen" class="fixed z-10 text-gray-600 mt-4 ml-4">
+      <button mat-mini-fab color="primary">
+        <mat-icon svgIcon="menu" (click)="snav.toggle()"></mat-icon>
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>
+
+<app-message></app-message>
+<app-dialog></app-dialog>
