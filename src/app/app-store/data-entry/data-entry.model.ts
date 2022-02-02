@@ -2,7 +2,7 @@ import { Template } from '../template/template.model';
 
 export class DataEntry {
   dataEntryId?: number = null;
-  scheduleId: number = null;
+  scheduleId?: number = null;
   templateId: number = null;
   createDate: string = null;
   submitDate: string = null;

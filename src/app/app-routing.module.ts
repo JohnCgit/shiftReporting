@@ -42,9 +42,10 @@ const routes: Routes = [
   { path: 'checklist-editor', component: ChecklistEditorComponent, canActivate: [AuthGuard] },
   { path: 'checklist-data-entry', component: ChecklistDataEntryComponent, canActivate: [AuthGuard] },
   { path: 'callback.html', component: LoginComponent },
-  { path: '**', redirectTo: 'calendar', pathMatch: 'full' },
+  { path: '**', redirectTo: 'reports', pathMatch: 'full' },
   { path: 'approvals/dataentry', component: ApprovalProcessComponent, canActivate: [AuthGuard] },
   { path: 'templates', component: TemplatesComponent, canActivate: [AuthGuard] },
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
       
   //   ]
   // }

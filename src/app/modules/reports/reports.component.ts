@@ -162,13 +162,13 @@ export class ReportsComponent implements OnInit {
     temp.toNotifyUserIdList = template.body.toNotifyUserIdList;
     template.body = temp;
     const newDataEntry: DataEntry = {
-      createDate : new Date(),
-      isApproved : false,
-      modifiedUserId : this.currentUser.userId,
-      submitDate : null,
-      submitUserId : null,
-      template : template,
-      templateId : template.templateId
+      createDate: new Date().toDateString(),
+      isApproved: false,
+      modifiedUserId: this.currentUser.userId,
+      submitDate: null,
+      submitUserId: null,
+      template: template,
+      templateId: template.templateId,
     }
 
     // console.log(template);
@@ -184,7 +184,7 @@ export class ReportsComponent implements OnInit {
       
       c=>{
         console.log(c);
-        if(c && c.templateId == templateId)
+        if(c && c.dataEntry.templateId == templateId)
         this.router.navigate(['dataentry']);
       }
 
