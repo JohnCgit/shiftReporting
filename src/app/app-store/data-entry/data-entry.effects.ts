@@ -8,6 +8,7 @@ import { DataEntryHttpService } from './data-entry-http.service';
 import { mergeMap, filter, map, tap } from 'rxjs/operators';
 import { DataEntryCookieSenderService } from './data-entry-cookie-sender.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CurrentDataEntry } from './data-entry.model';
 
 
 @Injectable()
@@ -17,8 +18,13 @@ export class DataEntryEffects {
     ofType(DataEntryActions.addDataEntry),
     mergeMap(({ dataEntry }) => this.dataEntryHttpService.addDataEntry(dataEntry).pipe(
       map(resp => {
-        if (resp && resp.status === 200)
-          return DataEntryActions.setCurrentDataEntry({ currentDataEntry: resp.body });
+        if (resp && resp.status === 200){
+          const currentDataEntry:CurrentDataEntry={
+            dataEntry:resp.body
+          }
+          return DataEntryActions.setCurrentDataEntry({ currentDataEntry: currentDataEntry });
+
+        }
 
         this.cookieService.set('data-entry-backup', JSON.stringify({
           action: 'add',

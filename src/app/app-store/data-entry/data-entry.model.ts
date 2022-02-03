@@ -2,7 +2,6 @@ import { Template } from '../template/template.model';
 
 export class DataEntry {
   dataEntryId?: number = null;
-  scheduleId?: number = null;
   templateId: number = null;
   createDate: string = null;
   submitDate: string = null;
@@ -26,9 +25,9 @@ export class DataEntry {
 }
 
 export interface CurrentDataEntry {
-  startDate: Date;
-  endDate: Date;
-  deadline: Date
+  startDate?: Date;
+  endDate?: Date;
+  deadline?: Date
   dataEntry: DataEntry;
 }
 

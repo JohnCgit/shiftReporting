@@ -1,6 +1,6 @@
 import { TemplateActions, DataEntryActions } from '@actions/*';
 import { Component, OnInit } from '@angular/core';
-import { DataEntry, State, Template, TemplateBody, User } from '@models/*';
+import { CurrentDataEntry, DataEntry, State, Template, TemplateBody, User } from '@models/*';
 import { Router } from '@angular/router';
 import { allTemplates, connectionStatus, currentDataEntry, dataEntries, date, isSmallScreen, templateTypes, userDepartments } from 'src/app/app-store';
 import { select, Store } from '@ngrx/store';
@@ -173,11 +173,14 @@ export class ReportsComponent implements OnInit {
 
     // console.log(template);
     // console.log(newDataEntry);
+    console.log("here");
     this.store.dispatch(DataEntryActions.addDataEntry({dataEntry: newDataEntry}));
   }
   else {
+    console.log("there");
     templateId = event.templateId;
-    this.store.dispatch(DataEntryActions.setCurrentDataEntry({currentDataEntry: event}));
+    const currentDataEntry:CurrentDataEntry = {dataEntry:event}
+    this.store.dispatch(DataEntryActions.setCurrentDataEntry({currentDataEntry: currentDataEntry}));
   }
 
     this.store.select(currentDataEntry).subscribe(

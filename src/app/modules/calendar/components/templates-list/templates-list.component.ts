@@ -136,7 +136,7 @@ export class TemplatesListComponent implements OnInit, OnChanges {
       currentDataEntry.dataEntry = new DataEntry(item.dataEntry)
     } else {
       currentDataEntry.dataEntry = new DataEntry({
-        scheduleId: this.shift.schedule.scheduleId,
+        //scheduleId: this.shift.schedule.scheduleId,
         template: item.template,
         templateId: item.template.templateId,
       });

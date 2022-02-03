@@ -35,6 +35,7 @@ export class DataEntryComponent implements OnInit {
   user: User
   isSaveEnabled = false;
   isSmallScreen: boolean = false;
+  isEditable: boolean = true;
 
   getData$: Subscription
   constructor(
@@ -55,6 +56,8 @@ export class DataEntryComponent implements OnInit {
     this.bpObserver.observe('(max-width: 960px)').subscribe(result => {
       this.isSmallScreen = result.matches;
     })
+    console.log(this.dataEntry.template.body['isEditable'])
+    //this.isEditable = 
   }
   ngOnDestroy(): void {
     this.getData$.unsubscribe();

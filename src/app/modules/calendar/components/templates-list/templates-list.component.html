@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="min-w-full mt-2 p-1 cursor-pointer" *ngIf="!isDayView" (click)="clickChecklist()">
-      <span class="font-bold text-black">Checklsit</span>
+      <span class="font-bold text-black">Checklist</span>
     </div>
     <div *ngFor="let template of showedTemplates" (click)="clickTemplate(template)"
       class="min-w-full mt-2 p-1 cursor-pointer flex rounded shadow" [ngClass]="template.style.styleClass">
